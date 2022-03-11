@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, } from 'react-router-dom';
 import withDataFetching from '../withDataFetching';
 import SubHeader from '../components/SubHeader';
 
@@ -33,22 +33,33 @@ const Alert = styled.span`
   text-align: center;
 `;
 
-const Lists = ({ data, loading, error, history }) =>
-  !loading && !error ? (
-    <>
-      {history && <SubHeader title='Your Lists' />}
-      <ListWrapper>
-        {data &&
-          data.map(list => (
-            <ListLink key={list.id} to={`list/${list.id}`}>
-              <Title>{list.title}</Title>
-            </ListLink>
-          ))}
-      </ListWrapper>
-    </>
-  ) : (
-    <Alert>{loading ? 'Loading...' : error}</Alert>
-  );
+
+function Lists({ data, loading, error }) {
+
+    let location = useLocation();
+
+    return(
+
+    !loading && !error ? (
+     <>
+          {location && <SubHeader title='Your Lists' />}
+          <ListWrapper>
+            {data &&
+              data.map(list => (
+                <ListLink key={list.id} to={`list/${list.id}`}>
+                  <Title>{list.title}</Title>
+                </ListLink>
+              ))}
+          </ListWrapper>
+        </>
+      ) : (
+        <Alert>{loading ? 'Loading...' : error}</Alert>
+      )
+
+    )
+};
+
+  
 
 export default withDataFetching({
   dataSource:

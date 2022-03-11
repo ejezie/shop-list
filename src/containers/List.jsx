@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import withDataFetching from '../withDataFetching';
 import SubHeader from '../components/SubHeader';
 import ListItem from '../components/ListItem';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 const ListItemWrapper = styled.div`
   display: flex;
@@ -16,16 +17,23 @@ const Alert = styled.span`
   text-align: center;
 `;
 
-const List = ({ data, loading, error, match, history }) => {
+const List = ({ data, loading, error, history }) => {
+
+  let params = useParams();
+  let location = useLocation();
+  let navigate = useNavigate();
+
+//   console.log(location.state)
+
   const items =
-    data && data.filter(item => item.listId === parseInt(match.params.id));
+    data && data.filter(item => item.listId === parseInt(params.id));
 
   return !loading && !error ? (
     <>
-      {history && (
+      {location && (
         <SubHeader
-          goBack={() => history.goBack()}
-          openForm={() => history.push(`${match.url}/new`)}
+          goBack={() => navigate("/")}
+          openForm={() => navigate(`${location.pathname}/new`)}
         />
       )}
       <ListItemWrapper>
