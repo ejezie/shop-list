@@ -31,15 +31,15 @@ const App = () => (
       <Header />
       <ListsContextProvider>
         <ListsContext.Consumer>
-          {({lists}) => {
+          {({lists}) => (
             <Router>
-            <Routes>
-              <Route path='/' element={<Lists/>} />
-              <Route path='/list/:id/new' element={<Form/>} />
-              <Route path='/list/:id' element={<List/>} />
-            </Routes>
-          </Router>
-          }}
+              <Routes>
+                <Route path='/' element={<Lists lists={lists}/>} />
+                <Route path='/list/:id/new' element={<Form/>} />
+                <Route path='/list/:id' element={<List/>} />
+              </Routes>
+            </Router>
+          )}
         </ListsContext.Consumer>
       </ListsContextProvider>
     </AppWrapper>
