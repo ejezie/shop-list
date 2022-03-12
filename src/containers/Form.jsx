@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import SubHeader from '../components/SubHeader';
 import FormItem from '../components/FormItem';
 import Button from '../components/Button';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const FormWrapper = styled.div`
   display: flex;
@@ -16,10 +17,16 @@ const SubmitButton = styled(Button)`
   margin: 2% 0;
 `;
 
-const Form = ({ match, history }) => (
+const Form = ( ) => {
+
+  let location = useLocation();
+  let navigate = useNavigate();
+
+  return(
+
   <>
-    {history && (
-      <SubHeader goBack={() => history.goBack()} title={`Add Item`} />
+    {location && (
+      <SubHeader goBack={() => navigate(-1)} title={`Add Item`} />
     )}
     <FormWrapper>
       <form>
@@ -35,6 +42,7 @@ const Form = ({ match, history }) => (
       </form>
     </FormWrapper>
   </>
-);
+)
+};
 
 export default Form;
