@@ -17,7 +17,9 @@ const Alert = styled.span`
   text-align: center;
 `;
 
-const List = ({ data, loading, error, history }) => {
+const List = ({ data, loading, error, lists }) => {
+
+  console.log(lists);
 
   let params = useParams();
   let location = useLocation();
@@ -25,19 +27,22 @@ const List = ({ data, loading, error, history }) => {
 
 //   console.log(location.state)
 
-  const items =
-    data && data.filter(item => item.listId === parseInt(params.id));
+  const item =
+  lists && lists.filter(item => item.id === parseInt(params.id));
+
+  console.log(item);
 
   return !loading && !error ? (
     <>
       {location && (
         <SubHeader
+          title={item[0].title}
           goBack={() => navigate("/")}
           openForm={() => navigate(`${location.pathname}/new`)}
         />
       )}
       <ListItemWrapper>
-        {items && items.map(item => <ListItem key={item.id} data={item} />)}
+        {item && item.map(item => <ListItem key={item.id} data={item} />)}
       </ListItemWrapper>
     </>
   ) : (

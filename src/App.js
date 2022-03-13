@@ -35,8 +35,8 @@ const App = () => (
             <Router>
               <Routes>
                 <Route path='/' element={<Lists lists={lists}/>} />
-                <Route path='/list/:id/new' element={<Form/>} />
-                <Route path='/list/:id' element={<List/>} />
+                <Route path='/list/:id/new' element={<Form/>}/>
+                <Route path='/list/:id' element={<List lists={lists}/>} />
               </Routes>
             </Router>
           )}
