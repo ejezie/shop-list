@@ -1,13 +1,13 @@
 import React from "react";
 import withDataFetching from "../withDataFetching";
 
-export const ItemContext = React.createContext();
+export const ItemsContext = React.createContext();
 
-const ItemContextProvider = ({children, data}) => {
-    <ItemContext.Provider value={data}>
+const ItemsContextProvider = ({children, data}) => (
+    <ItemsContext.Provider value={{items: data}}>
         {children}
-    </ItemContext.Provider>
-}
+    </ItemsContext.Provider>
+)
 
 export default withDataFetching({dataSource: 
-'https://my-json-server.typicode.com/PacktPublishing/React-Projects/items'})(ItemContextProvider);
+'https://my-json-server.typicode.com/PacktPublishing/React-Projects/items'})(ItemsContextProvider);

@@ -17,7 +17,7 @@ const Alert = styled.span`
   text-align: center;
 `;
 
-const List = ({ data, loading, error, lists }) => {
+const List = ({ loading=false, error=false, lists, listItems }) => {
 
   console.log(lists);
 
@@ -50,7 +50,4 @@ const List = ({ data, loading, error, lists }) => {
   );
 };
 
-export default withDataFetching({
-  dataSource:
-    'https://my-json-server.typicode.com/pranayfpackt/-React-Projects/items',
-})(List);
+export default List;

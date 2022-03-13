@@ -34,7 +34,7 @@ const Alert = styled.span`
 `;
 
 
-function Lists({ lists, loading, error }) {
+function Lists({ lists, loading=false, error=false }) {
 
     let location = useLocation();
 

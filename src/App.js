@@ -6,6 +6,7 @@ import Lists from './containers/Lists';
 import Form from './containers/Form';
 import Header from './components/Header';
 import ListsContextProvider, {ListsContext} from './Context/ListsContextProvider';
+import ItemsContextProvider, {ItemsContext} from './Context/ItemsContextProvider';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -30,17 +31,23 @@ const App = () => (
     <AppWrapper>
       <Header />
       <ListsContextProvider>
-        <ListsContext.Consumer>
-          {({lists}) => (
-            <Router>
-              <Routes>
-                <Route path='/' element={<Lists lists={lists}/>} />
-                <Route path='/list/:id/new' element={<Form/>}/>
-                <Route path='/list/:id' element={<List lists={lists}/>} />
-              </Routes>
-            </Router>
-          )}
-        </ListsContext.Consumer>
+        <ItemsContextProvider>
+          <ListsContext.Consumer>
+            {({lists}) => (
+              <ItemsContext.Consumer>
+                {({items})=>(
+                  <Router>
+                   <Routes>
+                     <Route path='/' element={<Lists lists={lists}/>} />
+                     <Route path='/list/:id/new' element={<Form/>}/>
+                     <Route path='/list/:id' element={<List lists={lists} listItem={items}/>} />
+                   </Routes>
+                 </Router>
+                )}
+              </ItemsContext.Consumer>
+            )}
+          </ListsContext.Consumer>
+        </ItemsContextProvider>
       </ListsContextProvider>
     </AppWrapper>
   </>
