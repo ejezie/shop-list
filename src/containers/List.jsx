@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import withDataFetching from '../withDataFetching';
 import SubHeader from '../components/SubHeader';
 import ListItem from '../components/ListItem';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';

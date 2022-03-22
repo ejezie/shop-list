@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import withDataFetching from "../withDataFetching";
 
 async function fecthData(dataSource){
     try{
